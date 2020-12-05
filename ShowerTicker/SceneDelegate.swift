@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootViewController: ViewController = ViewController()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -17,7 +18,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        rootViewController = window?.rootViewController as! ViewController
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+            guard let url = URLContexts.first?.url else {
+                return
+            }
+
+            let parameters = rootViewController.appRemote.authorizationParameters(from: url);
+
+            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+                rootViewController.appRemote.connectionParameters.accessToken = access_token
+                rootViewController.accessToken = access_token
+            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+                // Show the error
+                print(error_description)
+            }
+        }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
