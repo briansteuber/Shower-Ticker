@@ -45,6 +45,7 @@
 			children = (
 				C73B6142257C493C00C1C629 /* ShowerTicker */,
 				C73B6141257C493C00C1C629 /* Products */,
+				C73B6158257C49AC00C1C629 /* SpotifyiOS.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,7 +66,6 @@
 				C73B6149257C493C00C1C629 /* Main.storyboard */,
 				C73B614C257C493E00C1C629 /* Assets.xcassets */,
 				C73B614E257C493E00C1C629 /* LaunchScreen.storyboard */,
-				C73B6158257C49AC00C1C629 /* SpotifyiOS.framework */,
 				C73B6151257C493E00C1C629 /* Info.plist */,
 			);
 			path = ShowerTicker;
