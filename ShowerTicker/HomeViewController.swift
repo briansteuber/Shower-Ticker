@@ -35,12 +35,17 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("test")
         setDate()
         timeString = setTime(withSeconds: seconds)
         LengthOfShower.text = ""
         DailyWaterSaved.text = ""
-        TotalWaterSaved.text = ""
+        loadShowers()
+        if showerArray.count == 0 {
+            TotalWaterSaved.text = "0 gallons"
+        }
+        else {
+            TotalWaterSaved.text = String(format: "%.2f gallons", showerArray[0].totalWaterSaved)
+        }
     }
     
     /*
@@ -94,6 +99,7 @@ class HomeViewController: UIViewController {
      */
     @IBAction func SaveButtonPressed(_ sender: Any) {
         print("saved pressed")
+        loadShowers() // need to reload to resort array
         if timer != nil
         {
             stopTimer()
@@ -113,14 +119,28 @@ class HomeViewController: UIViewController {
             newShower.date = date
             newShower.time = self.setTime(withSeconds: self.desiredShowerLength - self.seconds)
             newShower.waterSaved = waterSaved
-            // self.showerArray.insert(newShower, at: 0)
-            self.showerArray.append(newShower)
+            
             print(self.showerArray)
+            // total water
+            
+            if self.showerArray.isEmpty {
+                print("EMPTY")
+                newShower.totalWaterSaved = waterSaved
+            }
+            else {
+                print("NOT EMPTY")
+                newShower.totalWaterSaved = waterSaved + self.showerArray[0].totalWaterSaved
+            }
+            
+            self.showerArray.append(newShower)
             // used to pass data to history VC
             let barViewControllers = self.tabBarController?.viewControllers
             let secondVC = barViewControllers![1] as! HistoryViewController
             secondVC.showerArray = self.showerArray
             secondVC.loadShowers()
+        
+    
+            self.TotalWaterSaved.text = String(format: "%.2f gallons", newShower.totalWaterSaved)
             // save
             self.saveShower()
         }))
@@ -136,7 +156,6 @@ class HomeViewController: UIViewController {
      Event handler that increments/decrements the time
      */
     @IBAction func TimeStepperChanged(_ sender: UIStepper) {
-        print("stepper changed")
         sender.minimumValue = 180
         sender.maximumValue = 900
         sender.wraps = false
@@ -144,7 +163,6 @@ class HomeViewController: UIViewController {
         desiredShowerLength = Int(sender.value)
         seconds = Int(sender.value)
         timeString = setTime(withSeconds: seconds)
-        print(seconds)
     }
     
     /*
@@ -244,6 +262,18 @@ class HomeViewController: UIViewController {
         }
         catch {
             print("Audio file cannot be found")
+        }
+    }
+    
+    func loadShowers() {
+        let request: NSFetchRequest<Shower> = Shower.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+                request.sortDescriptors = [sortDescriptor]
+        do {
+            showerArray = try context.fetch(request)
+        }
+        catch {
+            print("Error loading showers \(error)")
         }
     }
 }
