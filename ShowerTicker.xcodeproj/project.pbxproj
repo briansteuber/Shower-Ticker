@@ -299,6 +299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GUYPJD4NUE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowerTicker",
@@ -309,9 +310,9 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PA8.ShowerTicker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/bsteuber/Documents/ShowerTicker/ShowerTicker/ShowerTicker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/nancygonzalez/Desktop/Shower-Ticker/ShowerTicker/ShowerTicker-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -324,6 +325,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GUYPJD4NUE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShowerTicker",
@@ -334,9 +336,9 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.PA8.ShowerTicker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/bsteuber/Documents/ShowerTicker/ShowerTicker/ShowerTicker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/nancygonzalez/Desktop/Shower-Ticker/ShowerTicker/ShowerTicker-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

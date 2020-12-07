@@ -11,7 +11,7 @@ class ViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayer
 
         var accessToken = ""
         
-        let SpotifyClientID = "0df5f078d56e4fe9920fae2826a33da0"
+        let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
         let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
 
         lazy var configuration = SPTConfiguration(
