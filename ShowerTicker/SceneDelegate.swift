@@ -10,7 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var rootViewController: ViewController = ViewController()
+    
+    var rootViewController: MusicViewController = MusicViewController()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,7 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        rootViewController = window?.rootViewController as! ViewController
+        let tabBarController = window?.rootViewController as! UITabBarController
+        if let tabBarViewController = tabBarController.viewControllers {
+            let theView = tabBarViewController[2] as! MusicViewController
+            rootViewController = theView
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
