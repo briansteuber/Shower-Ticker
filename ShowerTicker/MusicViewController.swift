@@ -12,7 +12,7 @@ import UIKit
 class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate { 
 
     var accessToken = ""
-
+    let playUri = "spotify:track:20I6sIOMTCkB6w7ryavxtO"
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
 
@@ -29,25 +29,37 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     }()
 
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-      print("connected")
+        print("connected")
+        self.appRemote.playerAPI?.delegate = self
+            self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+                if let error = error {
+                    debugPrint(error.localizedDescription)
+                }
+            })
     }
+    
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
       print("disconnected")
     }
+    
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
       print("failed")
     }
+    
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-      print("player state changed")
+        print("player state changed")
+        debugPrint("Track name: %@", playerState.track.name)
     }
-
+    
+    func connect() {
+        self.appRemote.authorizeAndPlayURI(self.playUri)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let playUri = "spotify:track:20I6sIOMTCkB6w7ryavxtO"
-        self.appRemote.authorizeAndPlayURI(playUri)
+        connect()
         print("working")
     }
 
