@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DIg-Q6-Wcd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DIg-Q6-Wcd">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +12,7 @@
         <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Shower_Ticker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="ShowerTicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,10 +44,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="mwq-mF-zX5">
-                                        <rect key="frame" x="65.5" y="227" width="212" height="97.5"/>
+                                        <rect key="frame" x="63.5" y="227" width="216.5" height="97.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RHo-yj-HX0">
-                                                <rect key="frame" x="0.0" y="0.0" width="34" height="97.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="97.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="playpause.fill" catalog="system" symbolScale="large"/>
@@ -57,7 +57,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEu-Os-g1l">
-                                                <rect key="frame" x="89" y="0.0" width="34" height="97.5"/>
+                                                <rect key="frame" x="90.5" y="0.0" width="35.5" height="97.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="arrow.clockwise" catalog="system" symbolScale="large"/>
@@ -67,7 +67,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6L-OX-63S">
-                                                <rect key="frame" x="178" y="0.0" width="34" height="97.5"/>
+                                                <rect key="frame" x="181" y="0.0" width="35.5" height="97.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal">
                                                     <imageReference key="image" image="square.and.arrow.down.fill" catalog="system" symbolScale="large"/>
@@ -167,12 +167,58 @@
         <!--Music-->
         <scene sceneID="vAL-s3-ITN">
             <objects>
-                <viewController id="gz2-bO-4E7" customClass="MusicViewController" customModule="Shower_Ticker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gz2-bO-4E7" customClass="MusicViewController" customModule="ShowerTicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Muj-UU-95D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="oXj-gG-Eyh">
+                                <rect key="frame" x="52" y="290" width="271" height="87"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IUt-L5-itX">
+                                        <rect key="frame" x="0.0" y="0.0" width="271" height="39"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
+                                        <state key="normal" title="CONNECT WITH SPOTIFY">
+                                            <color key="titleColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="connectButtonPresed:" destination="gz2-bO-4E7" eventType="touchUpInside" id="A8G-sE-pXb"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="111" translatesAutoresizingMaskIntoConstraints="NO" id="idy-6R-SNh">
+                                        <rect key="frame" x="43.5" y="65" width="184.5" height="22"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A5n-A5-LaJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="35.5" height="22"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="playpause.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="playPauseButtonPressed:" destination="gz2-bO-4E7" eventType="touchUpInside" id="Umq-HU-kYs"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLh-lR-qmi">
+                                                <rect key="frame" x="146.5" y="0.0" width="38" height="22"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="forward.end.alt.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="skipPressed:" destination="gz2-bO-4E7" eventType="touchUpInside" id="9r8-36-m7o"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Sbn-ZG-hmf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oXj-gG-Eyh" firstAttribute="centerX" secondItem="Muj-UU-95D" secondAttribute="centerX" id="8aT-fY-gOX"/>
+                            <constraint firstItem="oXj-gG-Eyh" firstAttribute="centerY" secondItem="Muj-UU-95D" secondAttribute="centerY" id="E5n-9O-U9r"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Music" image="music.note.list" catalog="system" id="GZa-e5-3AY"/>
                 </viewController>
@@ -183,7 +229,7 @@
         <!--History-->
         <scene sceneID="y4h-1w-nki">
             <objects>
-                <viewController id="uBo-J7-ay7" customClass="HistoryViewController" customModule="Shower_Ticker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uBo-J7-ay7" customClass="HistoryViewController" customModule="ShowerTicker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yGa-rl-UDE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -325,16 +371,23 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="forward.end.alt.fill" catalog="system" width="128" height="66"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
-        <image name="playpause.fill" catalog="system" width="128" height="73"/>
+        <image name="playpause.fill" catalog="system" width="32" height="32"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

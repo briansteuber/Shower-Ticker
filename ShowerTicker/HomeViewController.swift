@@ -156,7 +156,7 @@ class HomeViewController: UIViewController {
      Event handler that increments/decrements the time
      */
     @IBAction func TimeStepperChanged(_ sender: UIStepper) {
-        sender.minimumValue = 180
+        sender.minimumValue = 70
         sender.maximumValue = 900
         sender.wraps = false
         sender.autorepeat = true
@@ -172,8 +172,13 @@ class HomeViewController: UIViewController {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [self] (timer) in
             self.seconds -= 1
             if self.seconds == 60 {
-                self.playSound(with: "onemin")
+                self.playSound(withName: "onemin")
                 print("sound playing")
+            }
+            if self.seconds == 57 { // temporary fix to music shutting off after sound plays
+                let barViewControllers = self.tabBarController?.viewControllers
+                let thirdVC = barViewControllers![2] as! MusicViewController
+                thirdVC.connect()
             }
             if self.seconds == 00 || self.seconds == 0 {
                 print("Times up")
@@ -254,7 +259,7 @@ class HomeViewController: UIViewController {
     /*
      Function to play an audio file given a name for the file
      */
-    func playSound(with name: String) {
+    func playSound(withName name: String) {
         let path = Bundle.main.path(forResource: name, ofType: "wav")!
         do {
             try player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))

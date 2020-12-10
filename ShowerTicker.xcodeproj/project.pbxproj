@@ -20,7 +20,6 @@
 		C77AB298257EBEF2007DEE94 /* Shower+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB296257EBEF2007DEE94 /* Shower+CoreDataProperties.swift */; };
 		C77AB29B257EC092007DEE94 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB29A257EC092007DEE94 /* HistoryViewController.swift */; };
 		C77AB29E257EC0AB007DEE94 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB29D257EC0AB007DEE94 /* HomeViewController.swift */; };
-		C77AB2A1257EC0E9007DEE94 /* Shower.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB2A0257EC0E9007DEE94 /* Shower.swift */; };
 		C77AB2A4257EC108007DEE94 /* ShowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB2A3257EC108007DEE94 /* ShowerTableViewCell.swift */; };
 		C77AB2A7257EC42F007DEE94 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77AB2A6257EC42F007DEE94 /* MusicViewController.swift */; };
 /* End PBXBuildFile section */
@@ -42,7 +41,6 @@
 		C77AB296257EBEF2007DEE94 /* Shower+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shower+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C77AB29A257EC092007DEE94 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		C77AB29D257EC0AB007DEE94 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		C77AB2A0257EC0E9007DEE94 /* Shower.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shower.swift; sourceTree = "<group>"; };
 		C77AB2A3257EC108007DEE94 /* ShowerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowerTableViewCell.swift; sourceTree = "<group>"; };
 		C77AB2A6257EC42F007DEE94 /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +84,6 @@
 				C77AB29A257EC092007DEE94 /* HistoryViewController.swift */,
 				C77AB2A3257EC108007DEE94 /* ShowerTableViewCell.swift */,
 				C77AB2A6257EC42F007DEE94 /* MusicViewController.swift */,
-				C77AB2A0257EC0E9007DEE94 /* Shower.swift */,
 				C73B6147257C493C00C1C629 /* ViewController.swift */,
 				C73B6149257C493C00C1C629 /* Main.storyboard */,
 				C73B614C257C493E00C1C629 /* Assets.xcassets */,
@@ -181,7 +178,6 @@
 				C77AB293257EBEBB007DEE94 /* Shower_Ticker.xcdatamodeld in Sources */,
 				C77AB29B257EC092007DEE94 /* HistoryViewController.swift in Sources */,
 				C77AB298257EBEF2007DEE94 /* Shower+CoreDataProperties.swift in Sources */,
-				C77AB2A1257EC0E9007DEE94 /* Shower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +344,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/bsteuber/Documents/ShowerTicker/ShowerTicker/ShowerTicker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShowerTicker/ShowerTicker-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,7 +370,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.spotify.iOS-SDK-Quick-Start";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/bsteuber/Documents/ShowerTicker/ShowerTicker/ShowerTicker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShowerTicker/ShowerTicker-Bridging-Header.h";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

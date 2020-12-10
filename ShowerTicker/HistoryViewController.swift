@@ -43,6 +43,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func loadShowers() {
         let request: NSFetchRequest<Shower> = Shower.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+                request.sortDescriptors = [sortDescriptor]
         do {
             showerArray = try context.fetch(request)
         }

@@ -9,10 +9,22 @@
 
 import UIKit
 
-class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate { 
+class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate // may want to use SPTAppRemotePlayerAPI???
+{
+    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
+        appRemote.connectionParameters.accessToken = session.accessToken
+        appRemote.connect()
+    }
+    
+    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
+    }
+    
+    
+    var delegate: SPTAppRemotePlayerStateDelegate?
+    
 
     var accessToken = ""
-    let playUri = "spotify:track:20I6sIOMTCkB6w7ryavxtO"
+    let playUri = ""
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
 
@@ -36,6 +48,7 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
                     debugPrint(error.localizedDescription)
                 }
             })
+
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
@@ -46,23 +59,54 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
       print("failed")
     }
     
+    // required for SPTAppRemotePlayerStateDelegate
     func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
         print("player state changed")
+        let track = playerState.track
+        print(track.name)
         debugPrint("Track name: %@", playerState.track.name)
     }
     
     func connect() {
         self.appRemote.authorizeAndPlayURI(self.playUri)
+        appRemoteDidEstablishConnection(self.appRemote)
     }
+    
+    func pause() {
+        self.appRemote.playerAPI?.pause(nil)
+
+    }
+    
+    func skip() {
+        self.appRemote.playerAPI?.skip(toNext: nil)
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        connect()
         print("working")
     }
 
+    @IBAction func connectButtonPresed(_ sender: Any) {
+        print("connecting")
+        connect()
+    }
+    
+    // pause not working
+    @IBAction func playPauseButtonPressed(_ sender: Any) {
+        print("play/pause pressed")
+        pause()
+    }
+    
+    // skip not working
+    @IBAction func skipPressed(_ sender: Any) {
+        print("skip pressed")
+        skip()
+    }
+    
     /*
     // MARK: - Navigation
 
