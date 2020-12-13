@@ -9,8 +9,9 @@
 
 import UIKit
 
-class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate // may want to use SPTAppRemotePlayerAPI???
+class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate//, SPTAppRemotePlayerAPI
 {
+    
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         appRemote.connectionParameters.accessToken = session.accessToken
         appRemote.connect()
@@ -27,6 +28,9 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     let playUri = ""
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+    var lastPlayerState: SPTAppRemotePlayerState?
+    
+
 
     lazy var configuration = SPTConfiguration(
       clientID: SpotifyClientID,
@@ -67,13 +71,21 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
         debugPrint("Track name: %@", playerState.track.name)
     }
     
+    
+    
     func connect() {
         self.appRemote.authorizeAndPlayURI(self.playUri)
         appRemoteDidEstablishConnection(self.appRemote)
     }
     
     func pause() {
-        self.appRemote.playerAPI?.pause(nil)
+        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+            self.appRemote.playerAPI?.resume(nil)
+        }
+        else {
+            self.appRemote.playerAPI?.pause(nil)
+        }
+        //self.appRemote.playerAPI?.pause(nil)
 
     }
     
@@ -98,7 +110,7 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     // pause not working
     @IBAction func playPauseButtonPressed(_ sender: Any) {
         print("play/pause pressed")
-        pause()
+        self.pause()
     }
     
     // skip not working
