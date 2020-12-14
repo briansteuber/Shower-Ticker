@@ -29,6 +29,17 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
     var lastPlayerState: SPTAppRemotePlayerState?
+    //var defaultCallback: SPTAppRemoteCallback
+    var defaultCallback: SPTAppRemoteCallback {
+            get {
+                return {[weak self] _, error in
+                    if let error = error {
+                        print(error)
+                        
+                    }
+                }
+            }
+        }
     
 
 
@@ -74,23 +85,35 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     
     
     func connect() {
-        self.appRemote.authorizeAndPlayURI(self.playUri)
+        //self.appRemote.authorizeAndPlayURI(self.playUri)
+        /*
+         Tried establishing a callback so we can pause/skip
+         */
+        self.appRemote.playerAPI?.play(self.playUri, asRadio: true, callback: self.defaultCallback)
         appRemoteDidEstablishConnection(self.appRemote)
     }
     
     func pause() {
-        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
-            self.appRemote.playerAPI?.resume(nil)
-        }
-        else {
-            self.appRemote.playerAPI?.pause(nil)
-        }
-        //self.appRemote.playerAPI?.pause(nil)
+        self.appRemote.playerAPI?.resume(defaultCallback)
+        
+        
+        /*
+         This may work too i just cant test it
+         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+         self.appRemote.playerAPI?.resume(nil)
+     }
+     else {
+         self.appRemote.playerAPI?.pause(nil)
+     }
+         */
+        
+        
 
     }
     
     func skip() {
-        self.appRemote.playerAPI?.skip(toNext: nil)
+        self.appRemote.playerAPI?.skip(toNext:
+            defaultCallback)
         
     }
     
