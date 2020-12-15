@@ -12,6 +12,8 @@ import UIKit
 class MusicViewController: UIViewController
 {
     
+    var isPlaying = true
+    
     var appRemote: SPTAppRemote? {
             get {
                 return (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.appRemote
@@ -70,7 +72,22 @@ class MusicViewController: UIViewController
             //print("Pause working")
         //})
     
+        if isPlaying == true {
+            print("pausing")
+            self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+                print("pause was successful")
+            })
+            isPlaying = !isPlaying
+        }
+        else {
+            print("resuming")
+            self.appRemote?.playerAPI?.resume({(anyOptional, errorOptional) in
+                print("resume was successful")
+            })
+            isPlaying = !isPlaying
+        }
         
+        /*
         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
             print("resuming")
             self.appRemote?.playerAPI?.resume({(anyOptional, errorOptional) in
@@ -84,7 +101,7 @@ class MusicViewController: UIViewController
             })
         }
 
-    
+        */
         
         /*
          This may work too i just cant test it
