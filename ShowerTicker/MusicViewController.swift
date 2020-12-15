@@ -23,7 +23,7 @@ class MusicViewController: UIViewController
 
     static private let kAccessTokenKey = "access-token-key"
     // can maybe be empty ?? idk
-    let playUris = ["spotify:track:20I6sIOMTCkB6w7ryavxtO", "spotify:track:6Knv6wdA0luoMUuuoYi2i1"]
+    let playUris = ""// ["spotify:track:20I6sIOMTCkB6w7ryavxtO", "spotify:track:6Knv6wdA0luoMUuuoYi2i1"]
     
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
@@ -37,10 +37,10 @@ class MusicViewController: UIViewController
     
     
     func connect() {
-        if !(appRemote?.isConnected ?? false) {
-                   appRemote?.connect()
-               }
-        //self.appRemote.authorizeAndPlayURI(self.playUri)
+//        if !(appRemote?.isConnected ?? false) {
+ //                  appRemote?.connect()
+ //              }
+        self.appRemote?.authorizeAndPlayURI(self.playUris)
         /*
          Tried establishing a callback so we can pause/skip
          */
@@ -51,7 +51,7 @@ class MusicViewController: UIViewController
     }
     
     func pause() {
-        
+       /*
         index += 1
                 index %= playUris.count
                 let playUri = playUris[index]
@@ -65,20 +65,25 @@ class MusicViewController: UIViewController
                         print("successfully playing...")
                     })
                 }
+ */
         //self.appRemote.playerAPI?.pause({(any, errorOptional) in
             //print("Pause working")
         //})
-        /*
+    
         
         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
             print("resuming")
-            self.appRemote.playerAPI?.resume(defaultCallback)
+            self.appRemote?.playerAPI?.resume({(anyOptional, errorOptional) in
+                print("resume was successful")
+            })
         }
         else {
             print("pausing")
-            self.appRemote.playerAPI?.pause(defaultCallback)
+            self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+                print("pause was successful")
+            })
         }
- */
+
     
         
         /*
@@ -90,14 +95,21 @@ class MusicViewController: UIViewController
             self.appRemote.playerAPI?.pause(nil)
          }
          */
+       /*
+         self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+            print("pause was successful")
+        })
+ */
         
     }
     
     func skip() {
-        //self.appRemote.playerAPI?.skip(toNext:defaultCallback)
-        self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+        self.appRemote?.playerAPI?.skip(toNext: {(anyOptional, errorOptional) in
             print("skip was successful")
         })
+      //  self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+       //     print("skip was successful")
+    //    })
         
     }
     

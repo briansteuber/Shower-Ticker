@@ -224,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM1-aP-61H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="478"/>
+            <point key="canvasLocation" x="634" y="475"/>
         </scene>
         <!--History-->
         <scene sceneID="y4h-1w-nki">
@@ -375,7 +375,7 @@
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="music.note.list" catalog="system" width="128" height="115"/>
-        <image name="playpause.fill" catalog="system" width="32" height="32"/>
+        <image name="playpause.fill" catalog="system" width="128" height="70"/>
         <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
