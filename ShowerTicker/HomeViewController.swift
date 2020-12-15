@@ -169,20 +169,27 @@ class HomeViewController: UIViewController {
      Function to start the timer/deal with special cases
      */
     func startTimer() {
+        let barViewControllers = self.tabBarController?.viewControllers
+        let thirdVC = barViewControllers![2] as! MusicViewController
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [self] (timer) in
             self.seconds -= 1
             if self.seconds == 60 {
+                thirdVC.pause()
                 self.playSound(withName: "onemin")
                 print("sound playing")
             }
-            if self.seconds == 57 { // temporary fix to music shutting off after sound plays
-                let barViewControllers = self.tabBarController?.viewControllers
-                let thirdVC = barViewControllers![2] as! MusicViewController
+            
+            
+            
+            if self.seconds == 57 {
                 thirdVC.connect()
             }
+            
+            // stop time and present save alert when time == 0
             if self.seconds == 00 || self.seconds == 0 {
                 print("Times up")
                 stopTimer()
+                thirdVC.pause()
                 let saveAlert = UIAlertController(title: "Shower Finished", message: "Would you like to save this shower?", preferredStyle: .alert)
                 saveAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) -> Void in
                     // use 480 seconds because 8 minutes is average shower length

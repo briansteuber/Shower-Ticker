@@ -52,7 +52,7 @@ class MusicViewController: UIViewController
         //appRemoteDidEstablishConnection(self.appRemote)
     }
     
-    func pause() {
+    func playOrPause() {
        /*
         index += 1
                 index %= playUris.count
@@ -74,16 +74,12 @@ class MusicViewController: UIViewController
     
         if isPlaying == true {
             print("pausing")
-            self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
-                print("pause was successful")
-            })
+            pause()
             isPlaying = !isPlaying
         }
         else {
             print("resuming")
-            self.appRemote?.playerAPI?.resume({(anyOptional, errorOptional) in
-                print("resume was successful")
-            })
+            play()
             isPlaying = !isPlaying
         }
         
@@ -120,6 +116,18 @@ class MusicViewController: UIViewController
         
     }
     
+    func pause() {
+        self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
+            print("pause was successful")
+        })
+    }
+    
+    func play() {
+        self.appRemote?.playerAPI?.resume({(anyOptional, errorOptional) in
+            print("resume was successful")
+        })
+    }
+    
     func skip() {
         self.appRemote?.playerAPI?.skip(toNext: {(anyOptional, errorOptional) in
             print("skip was successful")
@@ -146,7 +154,7 @@ class MusicViewController: UIViewController
     // pause not working
     @IBAction func playPauseButtonPressed(_ sender: Any) {
         print("play/pause pressed")
-        pause()
+        playOrPause()
     }
     
     // skip not working
