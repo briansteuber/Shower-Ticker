@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SPTAppRemoteDelegate {
 
     
     static private let kAccessTokenKey = "access-token-key"
-        let clientIdentifier = "import UIKit
+        let clientIdentifier = "a3c4b9c2057a47a69385d0cb1baacb2f"
 
 class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate//, SPTAppRemotePlayerAPI
 {
