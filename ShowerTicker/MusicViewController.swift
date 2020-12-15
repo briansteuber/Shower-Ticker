@@ -85,17 +85,22 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     
     
     func connect() {
-        //self.appRemote.authorizeAndPlayURI(self.playUri)
+        self.appRemote.authorizeAndPlayURI(self.playUri)
         /*
          Tried establishing a callback so we can pause/skip
          */
-        self.appRemote.playerAPI?.play(self.playUri, asRadio: true, callback: self.defaultCallback)
+        //self.appRemote.playerAPI?.play(self.playUri, asRadio: true, callback: self.defaultCallback)
         // could be this too
         //self.appRemote.playerAPI?.play(self.playUri, callback: self.defaultCallback)
         appRemoteDidEstablishConnection(self.appRemote)
     }
     
     func pause() {
+        
+        self.appRemote.playerAPI?.pause({(anyOptional, errorOptional) in
+            print("Pause working")
+        })
+        /*
         
         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
             print("resuming")
@@ -105,6 +110,7 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
             print("pausing")
             self.appRemote.playerAPI?.pause(defaultCallback)
         }
+ */
     
         
         /*
@@ -120,8 +126,10 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     }
     
     func skip() {
-        self.appRemote.playerAPI?.skip(toNext:
-            defaultCallback)
+        //self.appRemote.playerAPI?.skip(toNext:defaultCallback)
+        self.appRemote.playerAPI?.pause({(anyOptional, errorOptional) in
+            print("skip was successful")
+        })
         
     }
     
