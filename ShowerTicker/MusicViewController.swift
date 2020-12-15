@@ -9,97 +9,65 @@
 
 import UIKit
 
-class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate//, SPTAppRemotePlayerAPI
+class MusicViewController: UIViewController
 {
     
-    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        appRemote.connectionParameters.accessToken = session.accessToken
-        appRemote.connect()
-    }
+    var appRemote: SPTAppRemote? {
+            get {
+                return (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.appRemote
+            }
+        }
     
-    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
-    }
-    
-    
-    var delegate: SPTAppRemotePlayerStateDelegate?
+    var index = -1
     
 
-    var accessToken = ""
-    let playUri = ""
+    static private let kAccessTokenKey = "access-token-key"
+    // can maybe be empty ?? idk
+    let playUris = ["spotify:track:20I6sIOMTCkB6w7ryavxtO", "spotify:track:6Knv6wdA0luoMUuuoYi2i1"]
+    
     let SpotifyClientID = "a3c4b9c2057a47a69385d0cb1baacb2f"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
     var lastPlayerState: SPTAppRemotePlayerState?
     
-    var defaultCallback: SPTAppRemoteCallback {
-            get {
-                return {[weak self] _, error in
-                    if let error = error {
-                        print(error)
-                        
-                    }
-                }
-            }
-        }
+   
     
-
-
-    lazy var configuration = SPTConfiguration(
-      clientID: SpotifyClientID,
-      redirectURL: SpotifyRedirectURL
-    )
-
-    lazy var appRemote: SPTAppRemote = {
-      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
-      appRemote.connectionParameters.accessToken = self.accessToken
-      appRemote.delegate = self
-      return appRemote
-    }()
-
-    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
-        print("connected")
-        self.appRemote.playerAPI?.delegate = self
-            self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
-                if let error = error {
-                    debugPrint(error.localizedDescription)
-                }
-            })
-
-    }
     
-    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
-      print("disconnected")
-    }
     
-    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
-      print("failed")
-    }
-    
-    // required for SPTAppRemotePlayerStateDelegate
-    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
-        print("player state changed")
-        let track = playerState.track
-        print(track.name)
-        debugPrint("Track name: %@", playerState.track.name)
-    }
     
     
     
     func connect() {
-        self.appRemote.authorizeAndPlayURI(self.playUri)
+        if !(appRemote?.isConnected ?? false) {
+                   appRemote?.connect()
+               }
+        //self.appRemote.authorizeAndPlayURI(self.playUri)
         /*
          Tried establishing a callback so we can pause/skip
          */
         //self.appRemote.playerAPI?.play(self.playUri, asRadio: true, callback: self.defaultCallback)
         // could be this too
         //self.appRemote.playerAPI?.play(self.playUri, callback: self.defaultCallback)
-        appRemoteDidEstablishConnection(self.appRemote)
+        //appRemoteDidEstablishConnection(self.appRemote)
     }
     
     func pause() {
         
-        self.appRemote.playerAPI?.pause({(anyOptional, errorOptional) in
-            print("Pause working")
-        })
+        index += 1
+                index %= playUris.count
+                let playUri = playUris[index]
+                if !(appRemote?.isConnected ?? false) {
+                    print("app remote is not connected")
+                    appRemote?.authorizeAndPlayURI(playUri)
+                }
+                else {
+                    print("app remote is connected")
+                    appRemote?.playerAPI?.play(playUri, callback: { (anyOptional, errorOptional) in
+                        print("successfully playing...")
+                    })
+                }
+        //self.appRemote.playerAPI?.pause({(any, errorOptional) in
+            //print("Pause working")
+        //})
         /*
         
         if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
@@ -127,7 +95,7 @@ class MusicViewController: UIViewController, SPTAppRemoteDelegate, SPTAppRemoteP
     
     func skip() {
         //self.appRemote.playerAPI?.skip(toNext:defaultCallback)
-        self.appRemote.playerAPI?.pause({(anyOptional, errorOptional) in
+        self.appRemote?.playerAPI?.pause({(anyOptional, errorOptional) in
             print("skip was successful")
         })
         
