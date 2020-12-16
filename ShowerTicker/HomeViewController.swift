@@ -156,7 +156,7 @@ class HomeViewController: UIViewController {
      Event handler that increments/decrements the time
      */
     @IBAction func TimeStepperChanged(_ sender: UIStepper) {
-        sender.minimumValue = 70
+        sender.minimumValue = 120
         sender.maximumValue = 900
         sender.wraps = false
         sender.autorepeat = true
